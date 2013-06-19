@@ -139,12 +139,8 @@ class Embedder(object):
         # update the plugin specific configuration
         for plugin in plugins:
             plugin_name = plugin.__class__.__name__.lower()
-            print "**", plugin_name
             self.plugin_config[plugin_name] = copy.copy(config)
-            print config
             self.plugin_config[plugin_name].update(plugin_config.get(plugin_name, {}))
-            print self.plugin_config[plugin_name], plugin_name
-            #plugin.configure(self.plugin_config[plugin_name]) # configure the plugin
 
 
     def __call__(self, link):
@@ -161,12 +157,3 @@ class Embedder(object):
         # if nothing matches simply return the link
         return link
             
-
-
-if __name__ == "__main__":
-    embedder = Embedder()
-    print embedder("https://www.youtube.com/watch?v=2wii8hfNkzE")
-    print embedder("http://de.slideshare.net/mrtopf/open-government-vortrag-aachen")
-    print embedder("http://www.flickr.com/photos/mrtopf/7780673842/")
-    print embedder("http://vimeo.com/68608567")
-
