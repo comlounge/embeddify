@@ -1,1 +1,1 @@
-from embeddify import Embedder
+from embeddify import *

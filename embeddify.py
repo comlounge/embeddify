@@ -12,6 +12,7 @@ import copy
 import json
 import requests
 
+__all__ = ['Plugin', 'OEmbedPlugin', 'YouTube', 'Vimeo', 'Slideshare', 'Flickr', 'Embedder']
 
 class Plugin(object):
     """base plugin to be used for converting one type of link into an embed"""
@@ -21,19 +22,16 @@ class Plugin(object):
         'height' : "315"
     }
 
+    def get_config(self, config):
+        """prepares the configuration on a per call basis by combining the default
+        with the generic config and the plugin specific one (the latter two coming
+        from the ``Embedder`` class.
+        """
+        c = copy.copy(self.default)
+        c.update(config)
+        return c
 
-    def __init__(self, **kw):
-        """initialize a plugin and do some base configuration. We at least give a width
-        and height in 1 16:9 aspect ratio as the default"""
-
-        self.config = copy.copy(self.default)
-        self.config.update(kw)
-
-    def configure(self, config):
-        """configure a plugin from the embedder class"""
-        self.config.update(config)
-
-    def __call__(self, parts):
+    def __call__(self, parts, config = {}):
         """this method needs to be implemented by a plugin author and check the url parts
         for a match. If a match was detected, return the embed as string, if not return None
         so the next plugin will try to match
@@ -49,11 +47,11 @@ class OEmbedPlugin(Plugin):
         """test if the plugin is able to convert that link"""
         return False
 
-    def __call__(self, parts):
+    def __call__(self, parts, config = {}):
         """call the oembed endpoint and return the result"""
+        c = self.get_config(config)
         if not self.test(parts): 
             return
-        c = self.config
         params = {
             "maxwidth"  : c['width'],
             "maxheight" : c['height'],
@@ -134,15 +132,19 @@ class Embedder(object):
 
         self.plugins = plugins
         self.plugin_config = {}
+        config = copy.copy(config)
         config.update(kw)
         self.config = config
 
         # update the plugin specific configuration
         for plugin in plugins:
             plugin_name = plugin.__class__.__name__.lower()
+            print "**", plugin_name
             self.plugin_config[plugin_name] = copy.copy(config)
+            print config
             self.plugin_config[plugin_name].update(plugin_config.get(plugin_name, {}))
-            plugin.configure(self.plugin_config[plugin_name]) # configure the plugin
+            print self.plugin_config[plugin_name], plugin_name
+            #plugin.configure(self.plugin_config[plugin_name]) # configure the plugin
 
 
     def __call__(self, link):
@@ -151,7 +153,8 @@ class Embedder(object):
         parts = urlparse.urlparse(link)
 
         for plugin in self.plugins:
-            res = plugin(parts)
+            name = plugin.__class__.__name__.lower()
+            res = plugin(parts, config = self.plugin_config[name])
             if res is not None:
                 return res
 
