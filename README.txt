@@ -41,7 +41,7 @@ You can also configure it on a per plugin basis using the plugin name mentioned 
    
     plugin_config = {
         'youtube': {'width' : 200},
-        'slideshare': {'width' : 400},
+        'slideshare': {'width' : 500},
     }
     embedder = Embedder(plugin_config = plugin_config)
 

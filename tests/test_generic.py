@@ -1,6 +1,6 @@
 
 def test_youtube(embedder):
-    assert embedder("https://www.youtube.com/watch?v=2wii8hfNkzE") == """<iframe width="560" height="315" src="http://www.youtube.com/embed/2wii8hfNkzE?feature=oembed" frameborder="0" allowfullscreen></iframe>"""
+    assert embedder("https://www.youtube.com/watch?v=SC93q4tZeNI") == """<iframe width="560" height="315" src="http://www.youtube.com/embed/SC93q4tZeNI?feature=oembed" frameborder="0" allowfullscreen></iframe>"""
 
 
 def test_slideshare(embedder):
@@ -12,7 +12,7 @@ def test_flickr(embedder):
 
 
 def test_vimeo(embedder):
-    assert embedder("http://vimeo.com/68608567") == """<iframe src="http://player.vimeo.com/video/68608567" width="560" height="315" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>"""
+    assert embedder("http://vimeo.com/6791752") == """<iframe src="http://player.vimeo.com/video/6791752" width="420" height="315" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>"""
     
 def test_unknown_site(embedder):
     assert embedder("http://heise.de") == """http://heise.de"""
