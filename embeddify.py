@@ -143,17 +143,23 @@ class Embedder(object):
             self.plugin_config[plugin_name].update(plugin_config.get(plugin_name, {}))
 
 
-    def __call__(self, link):
-        """parse the link and either return the link as is or an embed code in case we found a match"""
+    def __call__(self, url, **kw):
+        """parse the link and either return the link as is or an embed code in case we found a match
+
+        :param link: the url to get the embed code for
+        :param **kw: optional keyword arguments overwriting configuration on a by call basis
+        """
         
-        parts = urlparse.urlparse(link)
+        parts = urlparse.urlparse(url)
 
         for plugin in self.plugins:
             name = plugin.__class__.__name__.lower()
-            res = plugin(parts, config = self.plugin_config[name])
+            config = self.plugin_config[name]
+            config.update(kw)
+            res = plugin(parts, config = config)
             if res is not None:
                 return res
 
         # if nothing matches simply return the link
-        return link
+        return url
             
