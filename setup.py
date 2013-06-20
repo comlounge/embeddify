@@ -6,7 +6,7 @@ version = '0.1.0.1'
 setup(name='embeddify',
       version=version,
       description="converts URLs to embed codes",
-      long_description=open('README.txt').read(),
+      long_description=open('README.rst').read(),
       classifiers=['License :: OSI Approved :: BSD License', 
                    'Operating System :: OS Independent', 
                    'Programming Language :: Python',
