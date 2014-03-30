@@ -4,7 +4,7 @@ def test_youtube(embedder):
 
 
 def test_slideshare(embedder):
-    assert embedder("http://de.slideshare.net/mrtopf/open-government-vortrag-aachen") == """<iframe src="http://www.slideshare.net/slideshow/embed_code/13382702" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="http://www.slideshare.net/mrtopf/open-government-vortrag-aachen" title="OPen Government Vortrag Aachen" target="_blank">OPen Government Vortrag Aachen</a> </strong> from <strong><a href="http://www.slideshare.net/mrtopf" target="_blank">Christian Scholz</a></strong> </div>"""
+    assert embedder("http://de.slideshare.net/mrtopf/open-government-vortrag-aachen").startswith("""<iframe src="http://www.slideshare.net/slideshow/embed_code/13382702" width="427" height="356" """)
 
 
 def test_flickr(embedder):
@@ -12,7 +12,7 @@ def test_flickr(embedder):
 
 
 def test_vimeo(embedder):
-    assert embedder("http://vimeo.com/6791752") == """<iframe src="http://player.vimeo.com/video/6791752" width="420" height="315" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>"""
+    assert embedder("http://vimeo.com/6791752").startswith("""<iframe src="//player.vimeo.com/video/6791752" width="420" height="315" """)
     
 def test_unknown_site(embedder):
     assert embedder("http://heise.de") == """http://heise.de"""
