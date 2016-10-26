@@ -10,9 +10,11 @@
 *.o
 .build
 .sass-cache
+.tox
 static/js/tinymce
 design/stylesheets
 src/stylesheets
+dist
 docs/_build
 .project
 .pydevproject
