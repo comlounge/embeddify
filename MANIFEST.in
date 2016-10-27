@@ -1,0 +1,3 @@
+include README.rst
+include *.ini
+recursive-include embeddify/tests *.py
