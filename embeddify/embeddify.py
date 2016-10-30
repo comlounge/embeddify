@@ -76,7 +76,7 @@ class YouTube(OEmbedPlugin):
     """converts youtube links into embeds
     """
 
-    api_url = "http://www.youtube.com/oembed"
+    api_url = "https://www.youtube.com/oembed"
 
     def test(self, parts):
         """test if the plugin is able to convert that link"""
@@ -86,7 +86,7 @@ class Flickr(OEmbedPlugin):
     """converts flickr links into embeds
     """
 
-    api_url = "http://www.flickr.com/services/oembed"
+    api_url = "https://www.flickr.com/services/oembed"
 
     def test(self, parts):
         """test if the plugin is able to convert that link"""
@@ -96,7 +96,7 @@ class Vimeo(OEmbedPlugin):
     """converts vimeo links into embeds
     """
 
-    api_url = "http://vimeo.com/api/oembed.json"
+    api_url = "https://vimeo.com/api/oembed.json"
 
     def test(self, parts):
         """test if the plugin is able to convert that link"""
@@ -106,7 +106,7 @@ class Slideshare(OEmbedPlugin):
     """converts slideshare links into embeds
     """
 
-    api_url = "http://de.slideshare.net/api/oembed/2"
+    api_url = "https://de.slideshare.net/api/oembed/2"
 
     def test(self, parts):
         """test if the plugin is able to convert that link"""

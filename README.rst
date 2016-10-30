@@ -151,6 +151,8 @@ Changelog
 
 - support facebook.com videos
 
+- use https endpoints for all services
+
 
 0.1.1 (2016-10-27)
 ------------------
