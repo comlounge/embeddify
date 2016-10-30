@@ -1,6 +1,7 @@
 
 def test_youtube(embedder):
     assert embedder("https://www.youtube.com/watch?v=SC93q4tZeNI") == """<iframe width="560" height="315" src="https://www.youtube.com/embed/SC93q4tZeNI?feature=oembed" frameborder="0" allowfullscreen></iframe>"""
+    assert embedder("https://youtu.be/SC93q4tZeNI") == """<iframe width="560" height="315" src="https://www.youtube.com/embed/SC93q4tZeNI?feature=oembed" frameborder="0" allowfullscreen></iframe>"""
 
 
 def test_slideshare(embedder):

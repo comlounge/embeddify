@@ -80,7 +80,7 @@ class YouTube(OEmbedPlugin):
 
     def test(self, parts):
         """test if the plugin is able to convert that link"""
-        return "youtube.com" in parts.netloc
+        return "youtube.com" in parts.netloc or "youtu.be" in parts.netloc
 
 class Flickr(OEmbedPlugin):
     """converts flickr links into embeds
