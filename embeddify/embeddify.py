@@ -113,7 +113,25 @@ class Slideshare(OEmbedPlugin):
         return "slideshare.net" in parts.netloc or "slideshare.com" in parts.netloc
 
 
-STANDARD_PLUGINS = [YouTube(), Slideshare(), Flickr(), Vimeo()]
+class FacebookVideos(OEmbedPlugin):
+    """converts facebook video links into embeds
+    """
+
+    api_url = "https://www.facebook.com/plugins/video/oembed.json/"
+
+    def test(self, parts):
+        """test if the plugin is able to convert that link"""
+        if "facebook.com" in parts.netloc:
+            path_parts = parts.path.split('/')
+            if len(path_parts) > 2 and path_parts[2] == 'videos':
+                return True
+            if len(path_parts) > 1 and path_parts[1] == 'video.php':
+                return True
+        return False
+
+
+STANDARD_PLUGINS = [YouTube(), Slideshare(), Flickr(), Vimeo(), FacebookVideos()]
+
 
 class Embedder(object):
     """converts media links into embeds"""

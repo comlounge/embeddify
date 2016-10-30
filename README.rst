@@ -144,10 +144,12 @@ The source code can be found on `github <http://www.github.com/mrtopf/embeddify>
 Changelog
 =========
 
-0.1.2 (Unreleased)
+0.2.0 (Unreleased)
 ------------------
 
 - support youtu.be links
+
+- support facebook.com videos
 
 
 0.1.1 (2016-10-27)
