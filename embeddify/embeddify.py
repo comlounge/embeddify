@@ -8,6 +8,8 @@ Library for converting links into embed codes
 """
 
 import urlparse
+import cgi
+import urllib
 import copy
 import json
 import requests
@@ -47,8 +49,8 @@ class OEmbedPlugin(Plugin):
         """test if the plugin is able to convert that link"""
         return False
 
-    def __call__(self, parts, config = {}):
-        """call the oembed endpoint and return the result"""
+    def do_request(self, parts, config):
+        """run the request and return the data"""
         c = self.get_config(config)
         if not self.test(parts): 
             return
@@ -61,7 +63,13 @@ class OEmbedPlugin(Plugin):
         res = requests.get(self.api_url, params = params)
         if res.status_code != 200:
             return None
-        data = json.loads(res.text)
+        return json.loads(res.text)
+
+    def __call__(self, parts, config = {}):
+        """call the oembed endpoint and return the result"""
+        data = self.do_request(parts, config)
+        if data is None:
+            return None
         otype = data.get("type", None)
         if otype == "video":
             return data['html']
@@ -95,6 +103,26 @@ class Flickr(OEmbedPlugin):
     def test(self, parts):
         """test if the plugin is able to convert that link"""
         return "flickr.com" in parts.netloc
+
+    def __call__(self, parts, config = {}):
+        """special case for flickr so that we can avoid the iframe which html produces"""
+
+        data = self.do_request(parts, config)
+        if data is None:
+            return None
+        otype = data.get("type", None)
+        if otype != "photo":
+            return None # no photo, nothing to do here
+
+        new_data = {
+            'url' : data['web_page'],
+            'src' : data['url'],
+            'title' : cgi.escape(data['title']),
+            'width' : data['width'],
+            'height' : data['height'],
+        }
+
+        return """<a target="flickr" href="%(url)s"><img src="%(src)s" class="flickr-embed-img" alt="%(title)s" width="%(width)s" height="%(height)s"></a>""" %new_data
 
 class Vimeo(OEmbedPlugin):
     """converts vimeo links into embeds
