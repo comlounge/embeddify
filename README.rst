@@ -144,7 +144,32 @@ The source code can be found on `github <http://www.github.com/mrtopf/embeddify>
 Changelog
 =========
 
-2013-06-20 -- initial release
+0.2.0 (Unreleased)
+------------------
+
+- support youtu.be links
+
+- support facebook.com videos
+
+- use https endpoints for all services
+
+
+0.1.1 (2016-10-27)
+------------------
+
+- fix tests and packaging
+
+
+0.1.0.2 (2014-03-30)
+--------------------
+
+- fixed tests
+
+
+0.1.0.1 (2013-06-20)
+--------------------
+
+- initial release
 
 
 

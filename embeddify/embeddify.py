@@ -76,17 +76,17 @@ class YouTube(OEmbedPlugin):
     """converts youtube links into embeds
     """
 
-    api_url = "http://www.youtube.com/oembed"
+    api_url = "https://www.youtube.com/oembed"
 
     def test(self, parts):
         """test if the plugin is able to convert that link"""
-        return "youtube.com" in parts.netloc
+        return "youtube.com" in parts.netloc or "youtu.be" in parts.netloc
 
 class Flickr(OEmbedPlugin):
     """converts flickr links into embeds
     """
 
-    api_url = "http://www.flickr.com/services/oembed"
+    api_url = "https://www.flickr.com/services/oembed"
 
     def test(self, parts):
         """test if the plugin is able to convert that link"""
@@ -96,7 +96,7 @@ class Vimeo(OEmbedPlugin):
     """converts vimeo links into embeds
     """
 
-    api_url = "http://vimeo.com/api/oembed.json"
+    api_url = "https://vimeo.com/api/oembed.json"
 
     def test(self, parts):
         """test if the plugin is able to convert that link"""
@@ -106,14 +106,32 @@ class Slideshare(OEmbedPlugin):
     """converts slideshare links into embeds
     """
 
-    api_url = "http://de.slideshare.net/api/oembed/2"
+    api_url = "https://de.slideshare.net/api/oembed/2"
 
     def test(self, parts):
         """test if the plugin is able to convert that link"""
         return "slideshare.net" in parts.netloc or "slideshare.com" in parts.netloc
 
 
-STANDARD_PLUGINS = [YouTube(), Slideshare(), Flickr(), Vimeo()]
+class FacebookVideos(OEmbedPlugin):
+    """converts facebook video links into embeds
+    """
+
+    api_url = "https://www.facebook.com/plugins/video/oembed.json/"
+
+    def test(self, parts):
+        """test if the plugin is able to convert that link"""
+        if "facebook.com" in parts.netloc:
+            path_parts = parts.path.split('/')
+            if len(path_parts) > 2 and path_parts[2] == 'videos':
+                return True
+            if len(path_parts) > 1 and path_parts[1] == 'video.php':
+                return True
+        return False
+
+
+STANDARD_PLUGINS = [YouTube(), Slideshare(), Flickr(), Vimeo(), FacebookVideos()]
+
 
 class Embedder(object):
     """converts media links into embeds"""
