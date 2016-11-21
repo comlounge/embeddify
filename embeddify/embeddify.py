@@ -68,6 +68,10 @@ class OEmbedPlugin(Plugin):
         elif otype == "rich":
             return data['html']
         elif otype == "photo":
+            # for flickr (or maybe in general) we also check if html is provided and use this.
+            # this make sure we link back properly to flickr and use the correct image
+            if "html" in data:
+                return data['html']
             return """<img src="%(url)s" width="%(width)s" height="%(height)s">""" %data
         return None
 
@@ -164,7 +168,7 @@ class Embedder(object):
     def __call__(self, url, **kw):
         """parse the link and either return the link as is or an embed code in case we found a match
 
-        :param link: the url to get the embed code for
+        :param url: the url to get the embed code for
         :param **kw: optional keyword arguments overwriting configuration on a by call basis
         """
         
