@@ -136,22 +136,39 @@ Author
 
 embeddify is written by Christian 'mrtopf' Scholz, COM.lounge GmbH. 
 
+
+Contributors
+============
+
+Florian Schulze (fschulze)
+
+
 Source Code
 ===========
 
-The source code can be found on `github <http://www.github.com/mrtopf/embeddify>`_.
+The source code can be found on `github <http://www.github.com/comlounge/embeddify>`_.
+
+
 
 Changelog
 =========
 
-0.2.0 (Unreleased)
+0.2.0 (2016-11-21)
 ------------------
 
-- support youtu.be links
+- support youtu.be links [fschulze]
 
-- support facebook.com videos
+- support facebook.com videos [fschulze]
 
-- use https endpoints for all services
+- use https endpoints for all services [fschulze]
+
+- changed flickr oembed to return a linked image instead of just an image. [mrtopf]
+    
+- added class `flickr-embed-img` to flickr image for better styling [mrtopf]
+   
+- split ``__call__()`` on plugins into two methods, ``do_request()`` for
+  performing the actual request and ``__call__()`` will do the actual
+  processing [mrtopf]
 
 
 0.1.1 (2016-10-27)
