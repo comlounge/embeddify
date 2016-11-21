@@ -9,7 +9,7 @@ def test_slideshare(embedder):
 
 
 def test_flickr(embedder):
-    assert embedder("http://www.flickr.com/photos/mrtopf/7780673842/") == """<img src="https://farm9.staticflickr.com/8297/7780673842_a57b60cd16_n.jpg" width="320" height="250">"""
+    assert embedder("http://www.flickr.com/photos/mrtopf/7780673842/") == """<a target="flickr" href="https://www.flickr.com/photos/mrtopf/7780673842/"><img src="https://farm9.staticflickr.com/8297/7780673842_a57b60cd16_n.jpg" class="flickr-embed-img" alt="professionelle politische Kommunikation" width="320" height="250"></a>"""
 
 
 def test_vimeo(embedder):
