@@ -42,6 +42,29 @@ class Plugin(object):
         """
         return None
 
+
+class OEmbedMarkup(str):
+    def __new__(cls, s, data):
+        result = str.__new__(cls, s)
+        result.data = data
+        return result
+
+
+def get_markup_from_data(data):
+    if data is None:
+        return None
+    markup = None
+    otype = data.get("type", None)
+    # for flickr (or maybe in general) we also check if html is provided and use this.
+    # this make sure we link back properly to flickr and use the correct image
+    if otype in ("video", "rich", "photo") and 'html' in data:
+        markup = OEmbedMarkup(data['html'], data)
+    elif otype == "photo":
+        fmt = """<img src="%(url)s" width="%(width)s" height="%(height)s">"""
+        markup = OEmbedMarkup(fmt % data, data)
+    return markup
+
+
 class OEmbedPlugin(Plugin):
     """base class for all oembed enabled services"""
 
@@ -70,20 +93,7 @@ class OEmbedPlugin(Plugin):
     def __call__(self, parts, config = {}):
         """call the oembed endpoint and return the result"""
         data = self.do_request(parts, config)
-        if data is None:
-            return None
-        otype = data.get("type", None)
-        if otype == "video":
-            return data['html']
-        elif otype == "rich":
-            return data['html']
-        elif otype == "photo":
-            # for flickr (or maybe in general) we also check if html is provided and use this.
-            # this make sure we link back properly to flickr and use the correct image
-            if "html" in data:
-                return data['html']
-            return """<img src="%(url)s" width="%(width)s" height="%(height)s">""" %data
-        return None
+        return get_markup_from_data(data)
 
 
 class YouTube(OEmbedPlugin):
@@ -124,7 +134,9 @@ class Flickr(OEmbedPlugin):
             'height' : data['height'],
         }
 
-        return """<a target="flickr" href="%(url)s"><img src="%(src)s" class="flickr-embed-img" alt="%(title)s" width="%(width)s" height="%(height)s"></a>""" %new_data
+        fmt = """<a target="flickr" href="%(url)s"><img src="%(src)s" class="flickr-embed-img" alt="%(title)s" width="%(width)s" height="%(height)s"></a>"""
+        return OEmbedMarkup(fmt % new_data, data)
+
 
 class Vimeo(OEmbedPlugin):
     """converts vimeo links into embeds
@@ -170,6 +182,8 @@ STANDARD_PLUGINS = [YouTube(), Slideshare(), Flickr(), Vimeo(), FacebookVideos()
 class Embedder(object):
     """converts media links into embeds"""
 
+    OEmbedMarkup = OEmbedMarkup
+
     def __init__(self, plugins = STANDARD_PLUGINS, plugin_config = {}, config = {}, **kw):
         """initialize the Embedder class with a list of plugins to be used and optional configuration
 
@@ -214,4 +228,3 @@ class Embedder(object):
 
         # if nothing matches simply return the link
         return url
-            

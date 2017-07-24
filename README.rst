@@ -25,6 +25,14 @@ This works right now for
 * slideshare.net (plugin name: ``slideshare``)
 * facebook.com videos (plugin name: ``facebookvideos``)
 
+The raw OEmbed data can be accessed via the ``data`` attribute of the result if the result is an ``OEmbedMarkup`` instance::
+
+    >>> result = embedder("https://www.youtube.com/watch?v=2wii8hfNkzE")
+    >>> isinstance(result, embedder.OEmbedMarkup)
+    True
+    >>> result.data['thumbnail_url']
+    https://i.ytimg.com/vi/2wii8hfNkzE/hqdefault.jpg
+
 If a link can not be converted then the link will be returned.
 
 
@@ -156,6 +164,9 @@ Changelog
 
 0.3.0 (Unreleased)
 ------------------
+
+- The dictionary with raw OEmbed data can by accessed via the ``data``
+  attribute of the result if it comes from an OEmbed plugin [fschulze]
 
 - Python 3.x compatibility [fschulze]
 
