@@ -1,5 +1,4 @@
-from setuptools import setup, find_packages
-import sys, os
+from setuptools import setup
 
 version = '0.3.0.dev0'
 
