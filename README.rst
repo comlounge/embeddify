@@ -23,6 +23,7 @@ This works right now for
 * vimeo.com (plugin name: ``vimeo``)
 * flickr.com (plugin name: ``flickr``)
 * slideshare.net (plugin name: ``slideshare``)
+* facebook.com videos (plugin name: ``facebookvideos``)
 
 If a link can not be converted then the link will be returned.
 
