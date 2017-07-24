@@ -12,7 +12,6 @@ try:
 except ImportError:
     import urlparse
 import cgi
-import urllib
 import copy
 import json
 import requests
