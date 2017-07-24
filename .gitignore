@@ -11,11 +11,15 @@
 .build
 .sass-cache
 .tox
+/pip-selfcheck.json
+/bin/
 static/js/tinymce
 design/stylesheets
 src/stylesheets
 dist
 docs/_build
+/include/
+/lib/
 .project
 .pydevproject
 .settings
