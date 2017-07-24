@@ -54,8 +54,8 @@ You can also pass in arguments on a call by call basis like this::
     embedder("https://www.youtube.com/watch?v=2wii8hfNkzE", width=200)
 
 
-Chosing which plugins to use
-----------------------------
+Choosing which plugins to use
+-----------------------------
 
 If you don't want all the plugins to be active you can choose which ones you want to use by providing a list
 of plugins to use like this::
