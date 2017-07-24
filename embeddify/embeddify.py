@@ -7,7 +7,10 @@ Library for converting links into embed codes
 
 """
 
-import urlparse
+try:
+    from urllib import parse as urlparse
+except ImportError:
+    import urlparse
 import cgi
 import urllib
 import copy

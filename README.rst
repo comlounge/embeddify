@@ -156,6 +156,7 @@ Changelog
 0.3.0 (Unreleased)
 ------------------
 
+- Python 3.x compatibility [fschulze]
 
 
 0.2.0 (2016-11-21)
