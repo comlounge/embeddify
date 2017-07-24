@@ -153,6 +153,11 @@ The source code can be found on `github <http://www.github.com/comlounge/embeddi
 Changelog
 =========
 
+0.3.0 (Unreleased)
+------------------
+
+
+
 0.2.0 (2016-11-21)
 ------------------
 
