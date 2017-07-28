@@ -25,5 +25,7 @@ def test_plugin_selection():
     assert embedder("http://de.slideshare.net/mrtopf/open-government-vortrag-aachen") == "http://de.slideshare.net/mrtopf/open-government-vortrag-aachen"
 
 def test_by_call_configuration():
-    embedder = Embedder()
+    embedder = Embedder(width=400)
+    assert embedder.plugin_config['youtube'] == dict(width=400)
     assert embedder("https://www.youtube.com/watch?v=2wii8hfNkzE", width=200) == """<iframe width="200" height="113" src="https://www.youtube.com/embed/2wii8hfNkzE?feature=oembed" frameborder="0" allowfullscreen></iframe>"""
+    assert embedder.plugin_config['youtube'] == dict(width=400)

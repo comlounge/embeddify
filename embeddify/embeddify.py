@@ -220,7 +220,7 @@ class Embedder(object):
 
         for plugin in self.plugins:
             name = plugin.__class__.__name__.lower()
-            config = self.plugin_config[name]
+            config = copy.copy(self.plugin_config[name])
             config.update(kw)
             res = plugin(parts, config = config)
             if res is not None:

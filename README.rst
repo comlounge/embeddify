@@ -165,6 +165,9 @@ Changelog
 0.3.0 (Unreleased)
 ------------------
 
+- Don't let calling Embedder with keywords overwrite the plugin
+  configuration [fschulze]
+
 - The dictionary with raw OEmbed data can by accessed via the ``data``
   attribute of the result if it comes from an OEmbed plugin [fschulze]
 
