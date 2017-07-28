@@ -23,6 +23,15 @@ This works right now for
 * vimeo.com (plugin name: ``vimeo``)
 * flickr.com (plugin name: ``flickr``)
 * slideshare.net (plugin name: ``slideshare``)
+* facebook.com videos (plugin name: ``facebookvideos``)
+
+The raw OEmbed data can be accessed via the ``data`` attribute of the result if the result is an ``OEmbedMarkup`` instance::
+
+    >>> result = embedder("https://www.youtube.com/watch?v=2wii8hfNkzE")
+    >>> isinstance(result, embedder.OEmbedMarkup)
+    True
+    >>> result.data['thumbnail_url']
+    https://i.ytimg.com/vi/2wii8hfNkzE/hqdefault.jpg
 
 If a link can not be converted then the link will be returned.
 
@@ -53,8 +62,8 @@ You can also pass in arguments on a call by call basis like this::
     embedder("https://www.youtube.com/watch?v=2wii8hfNkzE", width=200)
 
 
-Chosing which plugins to use
-----------------------------
+Choosing which plugins to use
+-----------------------------
 
 If you don't want all the plugins to be active you can choose which ones you want to use by providing a list
 of plugins to use like this::
@@ -152,6 +161,18 @@ The source code can be found on `github <http://www.github.com/comlounge/embeddi
 
 Changelog
 =========
+
+0.3.0 (Unreleased)
+------------------
+
+- Don't let calling Embedder with keywords overwrite the plugin
+  configuration [fschulze]
+
+- The dictionary with raw OEmbed data can by accessed via the ``data``
+  attribute of the result if it comes from an OEmbed plugin [fschulze]
+
+- Python 3.x compatibility [fschulze]
+
 
 0.2.0 (2016-11-21)
 ------------------
