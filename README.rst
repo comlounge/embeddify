@@ -61,6 +61,16 @@ You can also pass in arguments on a call by call basis like this::
     embedder = Embedder()
     embedder("https://www.youtube.com/watch?v=2wii8hfNkzE", width=200)
 
+Autoplay
+--------
+
+Some providers support autoplay. You can use it with the autoplay setting::
+
+    embedder = Embedder(autoplay=True)
+
+Normally YouTube wouldn't support this setting, but the YouTube plugin handles
+it by rewriting the returned HTML code. This may break if YouTube ever changes
+the HTML code.
 
 Additional parameters
 ---------------------
@@ -175,6 +185,7 @@ Changelog
 0.3.0 (Unreleased)
 ------------------
 
+- Support autoplay setting and add a workaround in the YouTube plugin [fschulze]
 - Allow sending of additional parameters via ``params`` keyword [fschulze]
 
 - Don't let calling Embedder with keywords overwrite the plugin
