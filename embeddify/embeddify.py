@@ -85,6 +85,9 @@ class OEmbedPlugin(Plugin):
             "format"    : 'json',
             "url"       : urlparse.urlunparse(parts),
         }
+        for k, v in c.get('params', {}).items():
+            if k not in params:
+                params[k] = v
         res = requests.get(self.api_url, params = params)
         if res.status_code != 200:
             return None
