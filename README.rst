@@ -186,6 +186,7 @@ Changelog
 ------------------
 
 - Support autoplay setting and add a workaround in the YouTube plugin [fschulze]
+
 - Allow sending of additional parameters via ``params`` keyword [fschulze]
 
 - Don't let calling Embedder with keywords overwrite the plugin
