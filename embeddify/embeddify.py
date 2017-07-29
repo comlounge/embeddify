@@ -14,6 +14,7 @@ except ImportError:
 import cgi
 import copy
 import json
+import re
 import requests
 
 __all__ = ['Plugin', 'OEmbedPlugin', 'YouTube', 'Vimeo', 'Slideshare', 'Flickr', 'Embedder']
@@ -85,6 +86,11 @@ class OEmbedPlugin(Plugin):
             "format"    : 'json',
             "url"       : urlparse.urlunparse(parts),
         }
+        if config.get("autoplay", False):
+            params["autoplay"] = 1
+        for k, v in c.get('params', {}).items():
+            if k not in params:
+                params[k] = v
         res = requests.get(self.api_url, params = params)
         if res.status_code != 200:
             return None
@@ -105,6 +111,22 @@ class YouTube(OEmbedPlugin):
     def test(self, parts):
         """test if the plugin is able to convert that link"""
         return "youtube.com" in parts.netloc or "youtu.be" in parts.netloc
+
+    def do_request(self, parts, config):
+        """run the request and return the data"""
+        result = OEmbedPlugin.do_request(self, parts, config)
+        # youtube doesn't support the autoplay parameter, so we have to handle
+        # it manually
+        if result and "html" in result and config.get("autoplay", False):
+            m = re.search('''(<iframe[^>]+src=")([^"]*)(".*)''', result["html"])
+            if m:
+                (prefix, src, postfix) = m.groups()
+                src = urlparse.urlparse(src)
+                src = src._replace(query=src.query + '&autoplay=1')
+                src = urlparse.urlunparse(src)
+                result["html"] = prefix + src + postfix
+        return result
+
 
 class Flickr(OEmbedPlugin):
     """converts flickr links into embeds

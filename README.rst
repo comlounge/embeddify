@@ -61,6 +61,26 @@ You can also pass in arguments on a call by call basis like this::
     embedder = Embedder()
     embedder("https://www.youtube.com/watch?v=2wii8hfNkzE", width=200)
 
+Autoplay
+--------
+
+Some providers support autoplay. You can use it with the autoplay setting::
+
+    embedder = Embedder(autoplay=True)
+
+Normally YouTube wouldn't support this setting, but the YouTube plugin handles
+it by rewriting the returned HTML code. This may break if YouTube ever changes
+the HTML code.
+
+Additional parameters
+---------------------
+
+Some OEmbed providers allow additional parameters. For example Vimeo allows
+autoplay::
+
+    >>> embedder('https://player.vimeo.com/video/6791752', params=dict(autoplay=True))
+    <iframe src="https://player.vimeo.com/video/6791752?autoplay=1" width="420" height="315" frameborder="0" title="Intro Presentation for the Open Platforms Panel at the Community &amp; Marketing Summit" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
 
 Choosing which plugins to use
 -----------------------------
@@ -164,6 +184,10 @@ Changelog
 
 0.3.0 (Unreleased)
 ------------------
+
+- Support autoplay setting and add a workaround in the YouTube plugin [fschulze]
+
+- Allow sending of additional parameters via ``params`` keyword [fschulze]
 
 - Don't let calling Embedder with keywords overwrite the plugin
   configuration [fschulze]

@@ -29,3 +29,17 @@ def test_by_call_configuration():
     assert embedder.plugin_config['youtube'] == dict(width=400)
     assert embedder("https://www.youtube.com/watch?v=2wii8hfNkzE", width=200) == """<iframe width="200" height="113" src="https://www.youtube.com/embed/2wii8hfNkzE?feature=oembed" frameborder="0" allowfullscreen></iframe>"""
     assert embedder.plugin_config['youtube'] == dict(width=400)
+
+
+def test_autoplay():
+    embedder = Embedder(autoplay=True)
+    result = embedder("http://vimeo.com/6791752")
+    assert result.startswith("""<iframe src="https://player.vimeo.com/video/6791752?autoplay=1" width="420" height="315" """)
+    result = embedder("https://www.youtube.com/watch?v=SC93q4tZeNI")
+    assert result == """<iframe width="560" height="315" src="https://www.youtube.com/embed/SC93q4tZeNI?feature=oembed&autoplay=1" frameborder="0" allowfullscreen></iframe>"""
+
+
+def test_params():
+    embedder = Embedder()
+    result = embedder("http://vimeo.com/6791752", params=dict(autoplay=True))
+    assert result.startswith("""<iframe src="https://player.vimeo.com/video/6791752?autoplay=1" width="420" height="315" """)
