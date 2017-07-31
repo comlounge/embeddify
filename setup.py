@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '0.3.0.dev0'
+version = '0.3.0'
 
 setup(name='embeddify',
       version=version,
@@ -13,7 +13,10 @@ setup(name='embeddify',
                    'Topic :: Software Development :: Libraries',
                    'Topic :: Text Processing :: Markup :: HTML',
                    'Topic :: Text Processing :: Filters',
-                  ], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+                  ] + [
+                   ("Programming Language :: Python :: %s" % x)
+                   for x in "2.7 3.4 3.5 3.6".split()
+                  ],  # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       keywords='oembed embed html youtube vimeo slideshare flickr',
       packages = ['embeddify'],
       author='Christian Scholz, COM.lounge GmbH',

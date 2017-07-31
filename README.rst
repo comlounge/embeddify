@@ -182,7 +182,7 @@ The source code can be found on `github <http://www.github.com/comlounge/embeddi
 Changelog
 =========
 
-0.3.0 (Unreleased)
+0.3.0 (2017-07-31)
 ------------------
 
 - Support autoplay setting and add a workaround in the YouTube plugin [fschulze]
