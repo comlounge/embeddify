@@ -44,9 +44,15 @@ class Plugin(object):
         return None
 
 
-class OEmbedMarkup(str):
+try:
+    str_class = unicode
+except NameError:
+    str_class = str
+
+
+class OEmbedMarkup(str_class):
     def __new__(cls, s, data):
-        result = str.__new__(cls, s)
+        result = str_class.__new__(cls, s)
         result.data = data
         return result
 
