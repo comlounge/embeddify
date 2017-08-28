@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '0.3.1.dev0'
+version = '0.3.1'
 
 setup(name='embeddify',
       version=version,

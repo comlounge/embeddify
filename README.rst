@@ -182,7 +182,7 @@ The source code can be found on `github <http://www.github.com/comlounge/embeddi
 Changelog
 =========
 
-0.3.1 (Unreleased)
+0.3.1 (2017-08-28)
 ------------------
 
 - Fix for unicode in markup for Python 2.7 [fschulze]
