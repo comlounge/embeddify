@@ -54,6 +54,11 @@ def skip_facebook(embedder):  # disabled the test, because an access token is re
     assert isinstance(result, embedder.OEmbedMarkup)
 
 
+def test_tiktok(embedder):
+    result = embedder("https://www.tiktok.com/@marialuisamoni/video/7515543916888804630")
+    assert 'data-video-id="7515543916888804630"' in result
+
+
 def test_unknown_site(embedder):
     result = embedder("http://heise.de")
     assert result == """http://heise.de"""

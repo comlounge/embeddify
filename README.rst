@@ -24,6 +24,7 @@ This works right now for
 * flickr.com (plugin name: ``flickr``)
 * slideshare.net (plugin name: ``slideshare``)
 * facebook.com videos (plugin name: ``facebookvideos``)
+* tiktok.com videos (plugin name: ``tiktok``)
 
 The raw OEmbed data can be accessed via the ``data`` attribute of the result if the result is an ``OEmbedMarkup`` instance::
 
@@ -188,6 +189,8 @@ Changelog
 - Support Python 3.13 by using `html.escape` instead of deprecated `cgi.escape` [fschulze]
 
 - Drop FacebookVideos from standard plugins, as it doesn't work anymore as it is. It would require an access token and different URL. [fschulze]
+
+- Add TikTok support [2silver (Michael Graf)]
 
 
 0.3.1 (2017-08-28)

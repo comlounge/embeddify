@@ -20,7 +20,7 @@ import json
 import re
 import requests
 
-__all__ = ['Plugin', 'OEmbedPlugin', 'YouTube', 'Vimeo', 'Slideshare', 'Flickr', 'Embedder']
+__all__ = ['Plugin', 'OEmbedPlugin', 'YouTube', 'Vimeo', 'Slideshare', 'Flickr', 'TikTok', 'Embedder']
 
 class Plugin(object):
     """base plugin to be used for converting one type of link into an embed"""
@@ -206,8 +206,18 @@ class FacebookVideos(OEmbedPlugin):
                 return True
         return False
 
+class TikTok(OEmbedPlugin):
+    """converts tiktok links into embeds
+    """
 
-STANDARD_PLUGINS = [YouTube(), Slideshare(), Flickr(), Vimeo()]
+    api_url = "https://www.tiktok.com/oembed"
+
+    def test(self, parts):
+        """test if the plugin is able to convert that link"""
+        return "tiktok.com" in parts.netloc
+
+
+STANDARD_PLUGINS = [YouTube(), Slideshare(), Flickr(), Vimeo(), TikTok()]
 
 
 class Embedder(object):
