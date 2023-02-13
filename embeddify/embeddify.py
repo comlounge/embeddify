@@ -192,6 +192,8 @@ class FacebookVideos(OEmbedPlugin):
     """
 
     api_url = "https://www.facebook.com/plugins/video/oembed.json/"
+    # api_url = "https://graph.facebook.com/v15.0/{video-id}"
+    api_url = "https://graph.facebook.com/v15.0/"
 
     def test(self, parts):
         """test if the plugin is able to convert that link"""
