@@ -24,6 +24,7 @@ This works right now for
 * flickr.com (plugin name: ``flickr``)
 * slideshare.net (plugin name: ``slideshare``)
 * facebook.com videos (plugin name: ``facebookvideos``)
+* tiktok.com videos (plugin name: ``tiktok``)
 
 The raw OEmbed data can be accessed via the ``data`` attribute of the result if the result is an ``OEmbedMarkup`` instance::
 
