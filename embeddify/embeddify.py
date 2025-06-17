@@ -207,7 +207,7 @@ class FacebookVideos(OEmbedPlugin):
         return False
 
 
-STANDARD_PLUGINS = [YouTube(), Slideshare(), Flickr(), Vimeo(), FacebookVideos()]
+STANDARD_PLUGINS = [YouTube(), Slideshare(), Flickr(), Vimeo()]
 
 
 class Embedder(object):
