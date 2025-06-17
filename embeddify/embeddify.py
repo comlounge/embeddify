@@ -11,7 +11,10 @@ try:
     from urllib import parse as urlparse
 except ImportError:
     import urlparse
-import cgi
+try:
+    from html import escape
+except ImportError:
+    from cgi import escape  # type: ignore
 import copy
 import json
 import re
@@ -157,7 +160,7 @@ class Flickr(OEmbedPlugin):
         new_data = {
             'url' : data['web_page'],
             'src' : data['url'],
-            'title' : cgi.escape(data['title']),
+            'title' : escape(data['title']),
             'width' : data['width'],
             'height' : data['height'],
         }
