@@ -170,6 +170,7 @@ Contributors
 ============
 
 Florian Schulze (fschulze)
+Michael Graf (2silver)
 
 
 Source Code
@@ -189,7 +190,7 @@ Changelog
 
 - Drop FacebookVideos from standard plugins, as it doesn't work anymore as it is. It would require an access token and different URL. [fschulze]
 
-- Add TikTok support [2silver (Michael Graf)]
+- Add TikTok support [2silver]
 
 
 0.3.1 (2017-08-28)
