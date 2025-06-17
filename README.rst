@@ -169,8 +169,8 @@ embeddify is written by Christian 'mrtopf' Scholz, COM.lounge GmbH.
 Contributors
 ============
 
-Florian Schulze (fschulze)
-Michael Graf (2silver)
+- Florian Schulze (fschulze)
+- Michael Graf (2silver)
 
 
 Source Code
