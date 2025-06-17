@@ -182,6 +182,11 @@ The source code can be found on `github <http://www.github.com/comlounge/embeddi
 Changelog
 =========
 
+0.3.2 (2025-06-17)
+------------------
+
+- Support python 3.13 by using `html.escape` instead of deprecated `cgi.escape` [fschulze]
+
 0.3.1 (2017-08-28)
 ------------------
 
