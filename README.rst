@@ -185,7 +185,7 @@ Changelog
 0.3.2 (2025-06-17)
 ------------------
 
-- Support python 3.13 by using `html.escape` instead of deprecated `cgi.escape` [fschulze]
+- Support Python 3.13 by using `html.escape` instead of deprecated `cgi.escape` [fschulze]
 
 - Drop FacebookVideos from standard plugins, as it doesn't work anymore as it is. It would require an access token and different URL. [fschulze]
 

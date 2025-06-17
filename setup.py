@@ -15,7 +15,7 @@ setup(name='embeddify',
                    'Topic :: Text Processing :: Filters',
                   ] + [
                    ("Programming Language :: Python :: %s" % x)
-                   for x in "2.7 3.4 3.5 3.6".split()
+                   for x in "2.7 3.4 3.5 3.6 3.7 3.8 3.9 3.10 3.11 3.12 3.13".split()
                   ],  # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       keywords='oembed embed html youtube vimeo slideshare flickr',
       packages = ['embeddify'],
